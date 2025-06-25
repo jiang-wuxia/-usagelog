@@ -1,0 +1,31 @@
+ble 
+广播包的组成，和类型
+连接：普通连接   加密连接   解析 gap 函数， 连接时各项参数， 主连接   从连接  pin码连接
+
+通信： 速度    收数据   发数据     收的包长  解析gatt函数
+
+抓包
+
+GPIO  
+
+
+睡眠（pmu）    ，睡眠模式下GPIO电平保持，设置唤醒
+休眠模式下的IO口电平设置- 默认电平设置
+
+睡眠模式下GPIO电平保持：（普通IO口）
+1.主函数初始化  
+2.在唤醒的时候，设置IO口电平
+3.在唤醒的进入函数，重新初始化电平
+
+设置唤醒脚：(普通IO)
+1.把设置IO口唤醒的设置放在进入睡眠的函数里
+2.初始化要把对应电平设置
+
+
+设置睡眠  和 退出睡眠 要设置和清除对应的标志位  
+设置睡眠：system_prevent_sleep_clear(SYSTEM_PREVENT_SLEEP_TYPE_DISABLE);
+退出睡眠：system_prevent_sleep_set(SYSTEM_PREVENT_SLEEP_TYPE_DISABLE);
+
+
+RTOS的通信机制应用
+

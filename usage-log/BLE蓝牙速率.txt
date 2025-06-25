@@ -1,0 +1,18 @@
+1.提高 PHY 层速率（使用 2M PHY）
+gap_conn_phy_update(service_id,GAPM_PHY_TYPE_LE_2M,GAPM_PHY_TYPE_LE_2M);
+
+2.增大 ATT MTU（一包的长度，需要主从一起约定）
+gatt_mtu_exchange_req(service_id, event->param.connect.conidx, 247);
+
+controller层的调整
+static const bt_ll_pkt_size_t ll_pkt_size = {
+    .tx_len = 251,
+    .tx_time = 2120,
+    .rx_len = 251,
+    .rx_time = 2120,
+};
+
+3.调整连接间隔参数
+
+4.若以上方法均不能提高速率，可能是硬件的问题：1.天线问题  2.晶振频偏
+

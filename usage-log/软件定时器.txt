@@ -1,0 +1,25 @@
+void myOSoftTimer1_Callback(TimerHandle_t xTimer)
+{   
+    printf("softtimer1 \r\n");   
+    
+}
+
+TimerHandle_t myOSoftTimer1;
+
+
+void init_myosoftTimer1(void)
+{
+    myOSoftTimer1 = xTimerCreate("myTimer1",
+                                pdMS_TO_TICKS(2000),
+                                pdTRUE,
+                                0,
+                                myOSoftTimer1_Callback
+   );
+   
+   if(myOSoftTimer1 == NULL)
+   {
+        printf("flase");
+        return;
+   }
+   xTimerStart(myOSoftTimer1,0);
+}
