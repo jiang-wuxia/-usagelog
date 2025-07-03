@@ -1,0 +1,8 @@
+boot  app 
+
+boot程序 一般 做 OTA、升级、恢复等简单任务，尽量不跑 FreeRTOS
+
+App 启动 独立初始化，不依赖 Boot 环境，避免使用 Boot 设置的全局变量
+
+
+从已经启动 FreeRTOS 的 Boot 跳转到 App 时，系统已经处于调度器运行状态，调度器占用了异常向量表（如 SysTick_Handler、PendSV_Handler），上下文、堆栈、BASEPRI 等中断控制寄存器处于运行态。这时候你再跳转 App，App 初始化新的 FreeRTOS，会破坏已有的运行环境，从而引发死机。
